@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+
+  prometheus:
+    image: jeanfavero/prometheus
+    ports:
+      - 9090:9090
+    environment:
+      - SCRAPE_INTERVAL=30s
+      - EVALUATION_INTERVAL=30s
+      - SCRAPE_TIMEOUT=30s
+      - STATIC_SCRAPE_TARGETS=mynginx1@nginx1ip:8080 mysqlexporter1@sqlexporter1ip:7070
+      - SCHEME_SCRAPE_TARGETS=https
+      - TSDB_RETENTION=30d
+      - REGION=desenv
+      - CHANNEL=desenv1
+      - PROMETHEUS_NAME=pn1
+      - ALERT_MANAGER_TARGET=alertmanager1:9093 alertmanager2:9094
+

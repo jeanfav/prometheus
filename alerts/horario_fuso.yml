@@ -1,0 +1,15 @@
+groups:
+- name: horario_fuso_dias_uteis
+  rules:
+
+  - record: fuso_horario_brasil
+    expr: ((hour() < 3) + 21) or ((hour() > 2) - 3)
+
+  - record: dia_util
+    expr: (day_of_week() > 0 and day_of_week() < 6)
+
+  - record: primeiros_dias_uteis_mes
+    expr: (dia_util) and (day_of_month() < 8)
+
+  - record: ultimos_dias_uteis_mes
+    expr: (dia_util) and (day_of_month() > 27)
